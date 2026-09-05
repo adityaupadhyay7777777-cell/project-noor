@@ -1,47 +1,90 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NOOR JI</title>
+    <title>NOOR JI - Happy Birthday & Proposal</title>
     <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
 
-    <section>
-        <div id="stars"></div>
-        <div class="moon"></div>
+    <!-- Fixed background across all pages -->
+    <div id="stars"></div>
+    <div class="moon"></div>
 
-        <div class="word" id="happy" style="align-self: center;">
-            <div>H</div>
-            <div>A</div>
-            <div>P</div>
-            <div>P</div>
-            <div>Y</div>
+    <!-- Navigation Header / Controls -->
+    <nav id="nav-controls">
+        <button id="prev-btn" class="nav-arrow" onclick="changePage(-1)">&larr; Prev</button>
+        <div id="page-dots">
+            <span class="dot active" onclick="goToPage(1)" title="Wish">1</span>
+            <span class="dot" onclick="goToPage(2)" title="Cake">2</span>
+            <span class="dot" onclick="goToPage(3)" title="Proposal">3</span>
+            <span class="dot" onclick="goToPage(4)" title="Love Note">4</span>
+            <span class="dot" onclick="goToPage(5)" title="Photos">5</span>
         </div>
+        <button id="next-btn" class="nav-arrow" onclick="changePage(1)">Next &rarr;</button>
+    </nav>
+
+    <!-- PAGE 1: HAPPY BIRTHDAY WISH -->
+    <section class="page-section active" id="page-1">
+        <div class="page1-layout">
+            <div id="bvideo">
+                <div class="video-badge">✨ Special Birthday Reel 💖</div>
+                <video src="video.mp4" autoplay controls loop playsinline preload="metadata"></video>
+            </div>
+            <div class="page1-text-col">
+                <div class="wish-card">
+                    <h1 class="wish-title">Happy Birthday Noor Ji! 💖</h1>
+                    <p class="wish-desc">To my beautiful girl, the love of my life... May your special day be filled
+                        with
+                        magic, happiness, and all the love in the universe! ✨</p>
+                </div>
+                <div class="word love-word">
+                    <div>L</div>
+                    <div>O</div>
+                    <div>V</div>
+                    <div>E</div>
+                    <div>Y</div>
+                    <div>O</div>
+                    <div>U</div>
+                    <div>B</div>
+                    <div>A</div>
+                    <div>B</div>
+                    <div>Y</div>
+                    <div>&#128536;</div>
+                </div>
+                <button class="action-btn" onclick="goToPage(2)">Go to Cake Cutting 🎂 &rarr;</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE 2: CAKE CUTTING -->
+    <section class="page-section" id="page-2">
+        <h1 class="section-title">Cake Cutting Time! 🎂</h1>
+        <p class="section-subtitle">Make a wish, Noor Madam, and blow out the candles! 🕯️</p>
+
+        <div class="cake-display">
+            <div class="candles-group" id="candles-group">
+                <div class="candle-flame"></div>
+                <div class="candle-flame"></div>
+                <div class="candle-flame"></div>
+                <div class="candle-flame"></div>
+            </div>
+            <img src="cake.jpg" alt="Birthday Cake" class="cake-img">
+        </div>
+
+        <button id="blow-candles-btn" class="action-btn" onclick="blowCandles()">💨 Blow Candles & Cut Cake 🎂</button>
+        <div id="cake-wish-alert" class="wish-alert" style="display: none;">
+            ✨ Wish sent to the stars! Happy Birthday My Wife❤️! 🎉
+        </div>
+        <button class="action-btn next-link" onclick="goToPage(3)">Next: Proposal 💍 &rarr;</button>
+    </section>
+
+    <!-- PAGE 3: ASKING FOR MARRIAGE (EXACT PREVIOUS LAYOUT PRESERVED) -->
+    <section class="page-section" id="page-3">
         <div id="container">
-            <div class="letter">
-                <div>B</div>
-                <div>I</div>
-                <div>R</div>
-                <div>T</div>
-                <div>H</div>
-                <div>D</div>
-                <div>A</div>
-                <div>Y</div>
-            </div>
-            <div class="letter">
-                <div>M</div>
-                <div>Y</div>
-                <div> </div>
-                <div>G</div>
-                <div>I</div>
-                <div>R</div>
-                <div>L</div>
-            </div>
             <div id="question">
                 <div id="girl">&#128103;</div>
                 <h2>Will You Marry Me?</h2>
@@ -50,22 +93,61 @@
                     <button type="button" id="no">No</button>
                 </div>
             </div>
-            
         </div>
-        <div class="word" id="love-word">
-            <div>L</div>
-            <div>O</div>
-            <div>V</div>
-            <div>E</div>
-            <div>Y</div>
-            <div>O</div>
-            <div>U</div>
-            <div>B</div>
-            <div>A</div>
-            <div>B</div>
-            <div>Y</div>
-            <div>&#128536;</div>
+    </section>
 
+    <!-- PAGE 4: LOVE NOTE -->
+    <section class="page-section" id="page-4">
+        <h1 class="section-title">A Letter From My Heart 💌</h1>
+        <div class="note-box">
+            <div class="note-header">To My Dearest Noor ji ❤️</div>
+            <div class="note-content">
+                <p>Mai baut khush hu jo mai tumse mila ya sorry phele to bs dekha tha hayee mai bta nhi sakta mera kya
+                    haal hua tha itni sundar pari jaisi ladki pr us time muje koi bhi response nhi mila aur syd us time
+                    tum mujse baat kr leti to mai tumhe serious leta ya nhi muje nhi pata per baad me jb mai akela hua
+                    tb muje lga nhi koi mera hona chahiye jo sirf mera ho sirf mera aur usse mai sb baat kr pau bina koi
+                    dar ke aur dekho jisko mai pasand kiya tha mtlb tum aaj mere sath ho </p>
+                <p>Tumhare andar kya accha hai kya nhi muje nhi janna bs jb mai number diya us night jb tum soi nhi aur
+                    muje hi dekhti rahi kuch time ke liye wo mere dil me baith gaya ki bs yahi ladki hai jo sirf meri ho
+                    sakti hai aur phir aaj tum meri ho aur tumhe bhi ab hamesa mere sath rahna hai aise pyar kabhi kam
+                    ho ya jada baat ho ya na kuch bhi ho jaye hame bs sath rahna hai ek dusre ke </p>
+                <p>Promise ! Tumhari hamesa respect karunga aur tumhare saath har din kisi bhi situation me sath rahunga
+                </p>
+            </div>
+            <div class="note-footer">Forever Yours,<br>ADI💖</div>
+        </div>
+        <button class="action-btn" onclick="goToPage(5)">View Cinema Memories 🎬 &rarr;</button>
+    </section>
+
+    <!-- PAGE 5: CINEMA MEMORIES -->
+    <section class="page-section" id="page-5">
+        <h1 class="section-title">Our Precious Memories in Cinema 🎬📸</h1>
+        <p class="section-subtitle">Unforgettable clips & favorite moments with you ✨</p>
+        <div class="cinema-grid">
+            <div class="cinema-card">
+                <div class="cinema-badge">✨ Queen of Tears I</div>
+                <div class="cinema-video-box">
+                    <video src="qot1.mp4" controls playsinline preload="metadata"></video>
+                </div>
+            </div>
+            <div class="cinema-card">
+                <div class="cinema-badge">🫠 Queen of Tears II</div>
+                <div class="cinema-video-box">
+                    <video src="qot2.mp4" controls playsinline preload="metadata"></video>
+                </div>
+            </div>
+            <div class="cinema-card">
+                <div class="cinema-badge">🌹 Aouad</div>
+                <div class="cinema-video-box">
+                    <video src="aouad.mp4" controls playsinline preload="metadata"></video>
+                </div>
+            </div>
+            <div class="cinema-card">
+                <div class="cinema-badge">💖 Obsession</div>
+                <div class="cinema-video-box">
+                    <video src="obsession.mp4" controls playsinline preload="metadata"></video>
+                </div>
+            </div>
         </div>
     </section>
 
