@@ -2,7 +2,7 @@
 // 1. STAR BACKGROUND GENERATION
 // ==========================================
 const starContainer = document.getElementById("stars");
-const totalStars = 450;
+const totalStars = 50;
 
 if (starContainer) {
     for (let i = 0; i < totalStars; i++) {
