@@ -182,15 +182,8 @@ function blowCandles() {
     createHeartBubbles();
 }
 
-// ==========================================
-// 5. PROPOSAL PAGE (PAGE 3 - EXACT PREVIOUS LOGIC)
-// ==========================================
-const yesButton = document.getElementById("yes");
-const noButton = document.getElementById("no");
-const question = document.getElementById("question");
-const container = document.getElementById("container");
-
 // Floating heart bubbles animation
+
 function createHeartBubbles() {
     const hearts = ["💖", "💕", "❤️", "💗", "💓", "✨", "🌸"];
     const bContainer = document.body;
@@ -217,6 +210,14 @@ function createHeartBubbles() {
     }
 }
 
+// ==========================================
+// 5. PROPOSAL PAGE (PAGE 3 - EXACT PREVIOUS LOGIC)
+// ==========================================
+const yesButton = document.getElementById("yes");
+const noButton = document.getElementById("no");
+const question = document.getElementById("question");
+const container = document.getElementById("container");
+
 if (yesButton) {
     yesButton.addEventListener("click", () => {
         // Stop birthday music
@@ -233,9 +234,6 @@ if (yesButton) {
             noButton.style.left = "";
             noButton.style.top = "";
         }
-
-        // Trigger floating heart bubbles background animation
-        createHeartBubbles();
 
         alert("Thanks a lot baby for saying yes! 😘💖 Read a small letter from my heart & Feel The Music🎶");
         if (question) question.style.display = "none";
