@@ -2,7 +2,7 @@
 // 1. STAR BACKGROUND GENERATION
 // ==========================================
 const starContainer = document.getElementById("stars");
-const totalStars = 50;
+const totalStars = 100;
 
 if (starContainer) {
     for (let i = 0; i < totalStars; i++) {
@@ -33,82 +33,7 @@ if (starContainer) {
 // ==========================================
 // Single persistent audio instance for proposal yes music
 const music = new Audio("music.mp3");
-
-// Web Audio API Synthesizer for Page 1 & 2 Birthday Song
-let audioCtx = null;
-let bdayInterval = null;
-
-const bdayNotes = [
-    261.63, 261.63, 293.66, 261.63, 349.23, 329.63, // Happy birthday to you
-    261.63, 261.63, 293.66, 261.63, 392.00, 349.23, // Happy birthday to you
-    261.63, 261.63, 523.25, 440.00, 349.23, 329.63, 293.66, // Happy birthday dear Noor
-    466.16, 466.16, 440.00, 349.23, 392.00, 349.23  // Happy birthday to you
-];
-const noteDurations = [
-    0.4, 0.4, 0.8, 0.8, 0.8, 1.4,
-    0.4, 0.4, 0.8, 0.8, 0.8, 1.4,
-    0.4, 0.4, 0.8, 0.8, 0.8, 0.8, 1.4,
-    0.4, 0.4, 0.8, 0.8, 0.8, 1.6
-];
-
-function playBdayTone(freq, duration) {
-    try {
-        if (!audioCtx) {
-            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        }
-        if (audioCtx.state === "suspended") {
-            audioCtx.resume();
-        }
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-
-        osc.type = "sine";
-        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-
-        gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration - 0.05);
-
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-
-        osc.start();
-        osc.stop(audioCtx.currentTime + duration);
-    } catch (e) {
-        console.log("Audio not allowed yet:", e);
-    }
-}
-
-let currentNoteIdx = 0;
-function startBdayMusic() {
-    if (bdayInterval) return;
-    currentNoteIdx = 0;
-    
-    function playNextNote() {
-        const freq = bdayNotes[currentNoteIdx];
-        const dur = noteDurations[currentNoteIdx];
-        playBdayTone(freq, dur);
-        
-        currentNoteIdx = (currentNoteIdx + 1) % bdayNotes.length;
-        const delay = dur * 1000 + 50;
-        bdayInterval = setTimeout(playNextNote, delay);
-    }
-
-    playNextNote();
-}
-
-function stopBdayMusic() {
-    if (bdayInterval) {
-        clearTimeout(bdayInterval);
-        bdayInterval = null;
-    }
-}
-
-// User interaction unlocks audio
-document.addEventListener("click", () => {
-    if (currentPage === 1 || currentPage === 2) {
-        if (!bdayInterval) startBdayMusic();
-    }
-}, { once: true });
+const bmusic = new Audio("clapping.mp3");
 
 // ==========================================
 // 3. PAGE SWITCHING SYSTEM
@@ -141,12 +66,7 @@ function updatePageDisplay() {
         noButton.style.top = "";
     }
 
-    // Control birthday music: active on page 1 & 2
-    if (currentPage === 1 || currentPage === 2) {
-        startBdayMusic();
-    } else {
-        stopBdayMusic();
-    }
+    // Control birthday music: active on page 4
     if (currentPage === 4) {
         music.play().catch(() => {});
     } else {
@@ -180,6 +100,9 @@ function blowCandles() {
     if (alertMsg) alertMsg.style.display = "block";
 
     createHeartBubbles();
+     bmusic.pause();
+        bmusic.currentTime = 0;
+         bmusic.play().catch(() => {});
 }
 
 // Floating heart bubbles animation
@@ -220,10 +143,9 @@ const container = document.getElementById("container");
 
 if (yesButton) {
     yesButton.addEventListener("click", () => {
-        // Stop birthday music
-        stopBdayMusic();
 
-        // Restart music.mp3 from beginning if already playing or stopped
+        // Restart musics from beginning if already playing or stopped
+        bmusic.pause();
         music.pause();
         music.currentTime = 0;
         
@@ -235,7 +157,7 @@ if (yesButton) {
             noButton.style.top = "";
         }
 
-        alert("Thanks a lot baby for saying yes! 😘💖 Read a small letter from my heart & Feel The Music🎶");
+        alert("Thanks a lot baby for saying yes! 😘💖 Read a small letter from my heart🫀 & Feel The Music🎶");
         if (question) question.style.display = "none";
         if (container) {
             container.style.display = "flex";
